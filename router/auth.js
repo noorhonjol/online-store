@@ -86,7 +86,7 @@ router.get('/home/:id',isAuth,(req, res)=>{
 })
 router.post('/home/:id',(req, res)=>{
     req.session.destroy((err) => {
-        res.redirect('/login') // will always fire after session is destroyed
+        res.redirect('/login');
     })
 })
 
