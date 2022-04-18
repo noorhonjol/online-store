@@ -16,7 +16,7 @@ app.use(express.json());
 //app.use('/',fav);
 app.use('/',home);
 
-const port = process.env.port ||3000;
+const port = process.env.port ||3200;
 
 app.listen(port,()=>{
     console.log(`the server is listening on ${port}`)}
