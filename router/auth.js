@@ -90,5 +90,96 @@ router.post('/home/:id',(req, res)=>{
     })
 })
 
+router.get('/forgot',(req, res)=>{
+    res.render('forgot')
+})
 
+router.post('/forgot',(req, res)=>{
+    const {email}=req.body
+    const random=Math.floor(Math.random()*100000);
+    db.getConnection((err, connection)=>{
+        if(err) throw err;
+        connection.release();
+        connection.query(`UPDATE users SET verfycode= ${random} WHERE email= "${email}";`,(err,rows)=>{  
+            if(err){
+                console.log("eror")
+            }
+            else{
+                if(rows.affectedRows<1){
+                    return res.redirect('forgot')
+                }
+                else{                    
+                    connection.query(`SELECT id from users WHERE email= "${email}"`,(err,rows)=>{
+                        if (err) throw err
+                        let transporter = nodemailer.createTransport({
+                            service: "gmail",
+                            port: 587,
+                            secure: false,
+                            auth: {
+                                user: "noorwebh@gmail.com",
+                                pass: "12345678@.",
+                            }
+                        });
+                        let mailoption={
+                            from:"noorwebh@gmail.com",
+                            to:email,
+                            subject:"verfiy code",
+                            text:`this your verfiy code ${random} and this linlk => http://localhost:3200/rest/${rows[0].id}`
+                        }
+                        transporter.sendMail(mailoption,(err,data)=>{
+                            if(err){
+                                console.log('err');
+                            }
+                            else{
+                                return res.redirect(`confirm/${rows[0].id}`);
+                            }
+                        })
+                    })
+                }
+            }
+        })
+    })
+})
+
+router.get('/confirm/:id',(req,res)=>{
+
+})
+router.post('/confirm/:id',(req,res)=>{
+    const {verfycode}=req.body;
+    db.getConnection((err, connection)=>{
+        if(err) throw err;
+        connection.release();
+        connection.query(`SELECT verfycode from users WHERE id= "${req.params.id}"`,(err,rows)=>{
+            if(err) throw err;
+            if(rows[0].verfycode==verfycode){
+                req.session.Userid=rows[0].id;
+                req.session.isAuth=true;
+                res.redirect(`rest/${req.params.id}`);
+            }
+            else{
+                res.redirect(`confirm/${id}`);
+            }
+            
+        })
+    })
+
+})
+
+router.get('/rest/:id',isAuth ,(req,res)=>{
+    res.render('rest')
+})
+router.post('/rest/:id',(req, res)=>{
+    const {newpasswword }= req.body;
+    db.getConnection((err, connection)=>{
+        connection.release();
+        connection.query(`UPDATE users SET password= ${newpasswword} WHERE id= "${req.params.id}";`,(err,rows)=>{  
+            if(!err){
+                console.log("sucsess");
+            }
+            else{
+                console.log("ccc");
+            }
+        })
+    })
+})
 module.exports=router;
