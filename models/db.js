@@ -3,8 +3,7 @@ var pool  = mysql.createPool({
     connectionLimit : 10,
     host            : 'localhost',
     user            : 'root',
-    database:"noor"
-    
+    database:"amazon2"
 });
 
 module.exports =pool;
