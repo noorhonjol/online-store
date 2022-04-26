@@ -1,5 +1,7 @@
 {
-
-    "email":"noor@gmail.com"
+    "db-host": "localhost",
+    "db-user":"root",
+    "db-schema":"amazon2"
+    
     
 }
