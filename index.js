@@ -7,6 +7,7 @@ const home = require('./router/home');
 const auth = require('./router/auth');
 const products = require('./router/products');
 
+
 const path = require('path');
 const ejs = require('ejs');
 
