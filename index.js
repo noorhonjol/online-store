@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const config = require('config')
+app.use(express.json())
+app.use(express.urlencoded())
 
 const home = require('./router/home');
-//const fav = require('./router/fav');
+const cart = require('./router/cart');
 const auth = require('./router/auth');
 const products = require('./router/products');
 
@@ -19,7 +21,7 @@ app.set('view engine', 'ejs');
 
 
 
-//app.use('/',cart);
+app.use('/',cart);
 //app.use('/',fav);
 app.use('/',auth);
 app.use('/',home);
