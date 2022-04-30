@@ -23,4 +23,11 @@ router.post('/products/category/shop',async(req,res)=>{
     res.status(204).send();
 
 })
+router.get('/cart',async(req,res)=>{
+
+    const [rows] = await db.pool.query(`SELECT pName,pPrice,image,count FROM product ,cart WHERE cart.proID=product.proID AND id =${req.session.u_id};`);
+        console.log(rows)
+    res.render('cart',{cart:rows})
+
+})
 module.exports=router
