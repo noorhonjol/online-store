@@ -21,9 +21,10 @@ app.set('view engine', 'ejs');
 
 
 
-app.use('/',cart);
+
 //app.use('/',fav);
 app.use('/',auth);
+app.use('/',cart);
 app.use('/',home);
 app.use('/products/category',products);
 
