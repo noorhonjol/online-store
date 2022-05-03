@@ -30,4 +30,6 @@ router.get('/cart',async(req,res)=>{
     res.render('cart',{cart:rows})
 
 })
+
+
 module.exports=router
