@@ -3,7 +3,7 @@ const router = express.Router();
 const db=require('../models/db');
 router.get('/homepage', async (req, res) => {
     const [rows]=await db.pool.query(`SELECT * FROM catogire`);
-    res.render('homepage',{categories:rows})
+    res.render('homepage',{categories:rows,session:req.session})
 })
 
 module.exports =router;
