@@ -1,6 +1,5 @@
 (function ($) {
     "use strict";
-    
     // Dropdown on mouse hover
     $(document).ready(function () {
         function toggleNavbarMethod() {
@@ -102,4 +101,29 @@
     
 })(jQuery);
 
+// const form = document.getElementById('Formm')
+// console.log(form)
+// form.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     proid=e.submitter.value;
+//     const xhr=new XMLHttpRequest();
+//     xhr.onreadystatechange = function() {
+//         if(this.readyState ===4){
+//             newpage();
+//         }
+//     }
+//     xhr.open('delete',`http://localhost:3200/d/${proid}`)
+//     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//     xhr.send(`catid=${proid}`);
+// })
 
+// function newpage(){
+//     const nxhr=new XMLHttpRequest();
+//     nxhr.onreadystatechange =function(){
+//         if(this.readyState ==4&&this.status == 200){
+//             document.body.innerHTML=this.responseText.split('<body>')[1]
+//         }
+//     }
+//     nxhr.open('get','http://localhost:3200/favorite');
+//     nxhr.send();
+// }

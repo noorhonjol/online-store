@@ -84,7 +84,7 @@
 
 
     <!-- Cart Start -->
-<form method="post">
+<form id="Formm" method="post">
             <div class="col-lg-8 table-responsive mb-5 container-fluid">
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
@@ -98,11 +98,11 @@
                     <tbody class="align-middle">
 
                             <% cart.forEach (element=> { %>
-                                <tr>
+                                <tr id=<%=element.proID%> >
                                     <td class="align-middle"><img src=<%=element.image%> alt="" style="width: 50px;"> <%=element.pName%></td>
                                     <td class="align-middle"><%=element.pPrice%></td>
                                     
-                                    <td class="align-middle"><button class="btn btn-sm btn-primary"  name="RemoveProduct" value=<%=element.proID%>><i class="fa fa-times"></i></button></td>
+                                    <td class="align-middle"><button class="btn btn-sm btn-primary RemevoButton"  name="RemoveProduct" value=<%=element.proID%> ><i class="fa fa-times"></i></button></td>
                                     <td class="align-middle"><button class="btn btn-sm btn-primary"  name="AddProduct" value=<%=element.proID%> > <i class="fa fa-plus"></i></button></td>
                                 </tr>
                                 

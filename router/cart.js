@@ -60,13 +60,14 @@ router.post('/favorite',async(req,res)=>{
         const [exist]=await db.pool.query(`SELECT * FROM cart WHERE proID=${AddProduct}`)
         if(!exist.length){
             await db.pool.query(`INSERT INTO cart VALUES (${req.session.u_id},${AddProduct},1,1,1,1);`);
+            return res.status(204).send();
         }
     }
     else{
         await db.pool.query(`DELETE FROM fav WHERE proID=${RemoveProduct}`)
-        //res.redirect('/favorite')
+        res.redirect('/favorite')
     }
-    res.status(204).send('/favorite/:id=rgbvrwg');
+    
 })
 
 module.exports=router
