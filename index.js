@@ -21,9 +21,6 @@ app.use('/products/category',express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
 
-
-
-
 //app.use('/',fav);
 app.use('/',auth);
 app.use('/',cart);

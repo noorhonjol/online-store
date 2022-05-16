@@ -40,7 +40,7 @@ const signup =async(req, res)=>{
     catch (err) {
         console.log("err");
     }
-;}
+}
 const login=async(req,res) => {
     const {emailOrUsername,password} = req.body;
     const ss=await checker(emailOrUsername);
@@ -119,7 +119,7 @@ const not_login =(req, res, next)=> {
         next();
     }
     else{
-        res.redirect(`login`);
+        res.render(`login`);
     }
 }
 const is_founded_toconfirm =(req, res, next)=> {

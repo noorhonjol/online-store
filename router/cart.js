@@ -48,9 +48,9 @@ router.get('/cart',async(req,res)=>{
 })
 router.get('/favorite',async(req,res)=>{
 
-    const [rows] = await db.pool.query(`SELECT pName,pPrice,image,product.proID FROM product ,fav WHERE fav.proID=product.proID AND id =${req.session.u_id};`);
+    const [rows] = await db.pool.query(`SELECT pName,pPrice,image,product.proID,catagioresID FROM product ,fav WHERE fav.proID=product.proID AND id =${req.session.u_id};`);
         //console.log(rows)
-    res.render('favorit',{cart:rows,session:req.session})
+    res.render('wishlist',{cart:rows,session:req.session})
 
 })
 router.post('/favorite',async(req,res)=>{

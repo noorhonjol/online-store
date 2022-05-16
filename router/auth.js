@@ -18,7 +18,7 @@ router.post('/home',authcontroller.distroy,(req, res)=>{
     res.redirect('/login')
 });
 router.get('/login',authcontroller.not_login,(req, res) => {
-    res.render('index')
+    res.render('login')
 });
 router.get('/forget',authcontroller.not_login,(req, res)=>{
     res.render('forget')
@@ -32,6 +32,10 @@ router.get('/confirm',authcontroller.not_login,authcontroller.is_founded_toconfi
         res.send("hello")
     }
 });
+router.get('/signup',(req,res)=>{
+
+    res.render('signup')
+})
 router.post('/confirm',authcontroller.distroy,authcontroller.confirm);
 router.get('/rest',authcontroller.not_login,authcontroller.isconfirmed,(req,res)=>{
     res.render('aa');
