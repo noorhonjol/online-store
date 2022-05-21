@@ -1,7 +1,5 @@
 const mysql= require('mysql2/promise');
 const config= require('config');
-var session = require('express-session')
-var MySQLStore = require('express-mysql-session')(session);
 
 var options = {
     connectionLimit : 10,
@@ -10,8 +8,8 @@ var options = {
     user            : config.get('db-user'),
     database:config.get('db-schema'),
 };
-var sessionStore = new MySQLStore(options);
+
 var pool  =  mysql.createPool(options);
 
 
-module.exports ={pool,sessionStore};
+module.exports =pool;

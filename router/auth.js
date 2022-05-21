@@ -1,29 +1,29 @@
+
 const express = require('express');
+const passport=require('passport');
 const db=require('../models/db');
 const router=express.Router();
 const authcontroller = require('../controler/authcontroller');
-var session = require('express-session');
-router.use(session({
-	secret: 'session_cookie_secret',
-	store: db.sessionStore,
-	resave: false,
-	saveUninitialized: false})
-);
+const isAuth= require('./isAuth').isAuth
+const isLogin=require('./isAuth').isLogined;
+
 router.post('/signup',authcontroller.signup);
-router.post('/login',authcontroller.login);
-router.get('/home',authcontroller.is_login,(req, res)=>{
-    res.render(`home`);
-});
-router.post('/home',authcontroller.distroy,(req, res)=>{
-    res.redirect('/login')
-});
-router.get('/login',authcontroller.not_login,(req, res) => {
+
+router.post('/login',  passport.authenticate('local', { failureRedirect: '/login', successRedirect: '/profile' }));
+
+
+router.get('/login',isLogin,(req, res) => {
+    //const [data]=await db.pool.query(`SELECT`)
     res.render('login')
 });
-router.get('/forget',authcontroller.not_login,(req, res)=>{
+
+router.get('/forget',isLogin,(req, res)=>{
     res.render('forget')
 });
+
 router.post('/forget',authcontroller.forget);
+
+
 router.get('/confirm',authcontroller.not_login,authcontroller.is_founded_toconfirm,(req,res)=>{
     const isEmpty = Object.keys(req.query).length === 0;
     if(!isEmpty){
@@ -32,13 +32,29 @@ router.get('/confirm',authcontroller.not_login,authcontroller.is_founded_toconfi
         res.send("hello")
     }
 });
+
 router.get('/signup',(req,res)=>{
 
     res.render('signup')
 })
+
 router.post('/confirm',authcontroller.distroy,authcontroller.confirm);
+
+router.get('/profile', isAuth, (req, res, next) => {
+    
+    res.render('dash-my-profile');
+});
+
+
 router.get('/rest',authcontroller.not_login,authcontroller.isconfirmed,(req,res)=>{
     res.render('aa');
 });
+
+router.get('/logout',authcontroller.distroy ,(req, res, next) => {
+    res.redirect('/login');
+});
+
 router.post('/rest',authcontroller.distroy,authcontroller.reset);
+
+
 module.exports=router;

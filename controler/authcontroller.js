@@ -2,23 +2,7 @@ const mysql= require('mysql2');
 const db=require('../models/db');
 const{hash,compare}=require('bcrypt');
 const sendEmail = require('../ults/sendemail');
-async function checker(str){
-    if(str.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)){
-        return "email";
-    }
-    else if (str.match( /^[a-zA-Z_][a-zA-Z0-9_]*/g)){
-        return "username";
-    }
-    else{
-        return "others"
-    }
-}
-const distroy=(req,res, next) => {
-    req.session.destroy((err) => {
-        console.log(err);
-    });
-    next();
-}
+
 const signup =async(req, res)=>{
     const {password,email,username,phonenumber,birthdate,firstname,lastname} = req.body;
     try {
@@ -41,35 +25,9 @@ const signup =async(req, res)=>{
         console.log("err");
     }
 }
-const login=async(req,res) => {
-    const {emailOrUsername,password} = req.body;
-    const ss=await checker(emailOrUsername);
-    if(ss!="others"){
-        const[rows]=await db.pool.query(`SELECT ${ss} , password,id FROM custamer WHERE ${ss} = "${emailOrUsername}";`);
-        if(rows.length){
-            let user;
-            if(ss==="email")user=rows[0].email;
-            else user=rows[0].userName;
-            if(user===emailOrUsername){
-                if(await compare(password,rows[0].password)){
-                    req.session.isLogin=true;
-                    req.session.u_id=rows[0].id;
-                    req.session.save();
-                    res.redirect('/home')
-                }
-            }
-            else{
-                res.send(`password or ${ss} is envalid`);
-            }
-        }
-        else{
-            res.send(`password or ${ss} is envalid`)
-        }
-    }
-}
+
 const forget =  async(req, res)=>{
-    const {emailOrUsername} = req.body; 
-    const ss=await checker(emailOrUsername);
+    const {email} = req.body; 
         try {
             [rows]=await db.pool.query(`SELECT * FROM custamer WHERE ${ss} = "${emailOrUsername}" ;`);
             if(rows.length){
@@ -138,7 +96,13 @@ const isconfirmed=(req, res,next)=> {
         res.redirect('/login');
     }
 }
+const distroy =(req, res, next)=> {
+    req.logout(()=>{
+        res.redirect(`login`)
+    });
+
+}
 
 module.exports={
-    login,signup,forget,confirm,distroy,reset,is_login,not_login,is_founded_toconfirm,isconfirmed
+    distroy,signup,forget,confirm,reset,is_login,not_login,is_founded_toconfirm,isconfirmed
 }

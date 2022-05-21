@@ -40,19 +40,26 @@ router.post('/products/category/shop',async(req,res)=>{
         res.status(204).send();
         
 })
+
 router.get('/cart',async(req,res)=>{
-
-    const [rows] = await db.pool.query(`SELECT pName,pPrice,image,count FROM product ,cart WHERE cart.proID=product.proID AND id =${req.session.u_id};`);
-    res.render('cart',{cart:rows,session:req.session})
-
+    if(req.user==undefined){
+        res.redirect('/homepage')
+    }else{
+        const [rows] = await db.query(`SELECT pName,pPrice,image,product.proID,catagioresID FROM product ,cart WHERE cart.proID=product.proID AND id =${req.user.id};`);
+        console.log(rows);
+        const [categories]=await db.query(`SELECT * FROM catogire`);
+        res.render('cart',{products:rows,categories:categories,session:req.session})
+    }
 })
-router.get('/favorite',async(req,res)=>{
-
-    const [rows] = await db.pool.query(`SELECT pName,pPrice,image,product.proID,catagioresID FROM product ,fav WHERE fav.proID=product.proID AND id =${req.session.u_id};`);
-        //console.log(rows)
-    res.render('wishlist',{cart:rows,session:req.session})
-
+router.get('/wishlist',async(req,res)=>{
+    if(req.user==undefined){
+        res.redirect('/homepage')
+    }else{
+        const [rows] = await db.query(`SELECT pName,pPrice,image,product.proID,catagioresID FROM product ,fav WHERE fav.proID=product.proID AND id =${req.user.id};`);
+        res.render('wishlist',{products:rows,session:req.session})
+    }
 })
+
 router.post('/favorite',async(req,res)=>{
     const{AddProduct,RemoveProduct}=req.body;
     

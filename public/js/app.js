@@ -1,3 +1,4 @@
+
 /**
  * This is main script file that contains JS code.
  */
@@ -654,6 +655,77 @@
             $primarySlider.data('owl.carousel').options.autoplay = true;
             $primarySlider.trigger('refresh.owl.carousel');
         }
+
+        axios.get("http://localhost:3200/getdata").then((response) => {
+            // console.log(response);
+            // window.localStorage.setItem("catgoires",JSON.stringify(response.data))
+            // console.log();
+            
+            const catagories=response.data.catogires;
+            
+            let usercart=response.data.usercart;
+            const totalcart=document.querySelector('.subtotal-value');
+            if(usercart!=0){
+                usercart=usercart[0];
+                let sum=0;
+                const cart_list=document.querySelector(".mini-product-container")
+                const total=document.querySelectorAll(".total-item-round")
+                for(let i=0; i<total.length;i++)total[i].innerHTML=usercart.length
+
+                for(let i=0;i<usercart.length;i++){
+                    sum+=usercart[i].pPrice;
+                    const newel=document.createElement("div")
+                    
+                    newel.className="card-mini-product"
+                    newel.innerHTML=`<div class="mini-product">
+                        <div class="mini-product__image-wrapper">
+
+                            <a class="mini-product__link" href="product-detail.html">
+
+                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></a></div>
+                        <div class="mini-product__info-wrapper">
+
+                            <span class="mini-product__category">
+
+                                <a href="shop-side-version-2.html">Electronics</a></span>
+
+                            <span class="mini-product__name">
+
+                                <a href="product-detail.html">Yellow Wireless Headphone</a></span>
+
+                            <span class="mini-product__quantity">1 x</span>
+
+                            <span class="mini-product__price">$8</span></div>
+                    </div>
+
+                    <a class="mini-product__delete-link far fa-trash-alt"></a>`
+                    
+                    cart_list.appendChild(newel);
+                }
+                console.log(totalcart)
+                totalcart.innerHTML="$"+sum
+            }
+            
+            
+            const cat_list=document.querySelector(".mega-menu-list ul")
+
+            
+
+            if(catagories.length){
+
+                for(let i=0; i<catagories.length;i++){
+                    const newel=document.createElement("li");
+                    newel.className="js-active";
+                    newel.innerHTML=
+                    `<a href="shop-side-version-2.html"><i class="fas fa-tv u-s-m-r-6"></i>
+                        <span>${catagories[i].catagioresName} </span></a>
+                        <span class="js-toggle-mark"></span>
+                    `
+                    cat_list.appendChild(newel)
+                }
+            }
+        })
+
     });
 
 
