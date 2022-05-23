@@ -41,8 +41,8 @@ router.get('/signup',(req,res)=>{
 router.post('/confirm',authcontroller.distroy,authcontroller.confirm);
 
 router.get('/profile', isAuth, (req, res, next) => {
-    
-    res.render('dash-my-profile');
+    console.log(req.user)
+    res.render('dash-my-profile',{profile:req.user});
 });
 
 
@@ -55,6 +55,18 @@ router.get('/logout',authcontroller.distroy ,(req, res, next) => {
 });
 
 router.post('/rest',authcontroller.distroy,authcontroller.reset);
+
+router.get('/edit-profile',(req,res)=>{
+
+    res.render('dash-edit-profile',{profile:req.user})
+})
+router.get('/manageprofile', async (req,res)=>{
+        const [rows]= await db.query(`SELECT * FROM fav where id = ${req.user.id}`)
+        let x=rows.length;
+        console.log(x);
+    res.render('dashboard',{profile:req.user,len:x})
+})
+
 
 
 module.exports=router;
