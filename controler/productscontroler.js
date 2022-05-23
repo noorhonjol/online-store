@@ -5,7 +5,7 @@ exports.giveAllProducts = async (req, res) => {
 
 
     const [rows] = await db.query(`SELECT * from product ;`);
-    res.render('shop-list-left',{products:rows,session:req.session});
+    res.render('shop-list-left',{products:rows,user:req.user});
     
 }
 exports.givcatproducts =async (req, res) =>{

@@ -81,6 +81,7 @@ app.get('/getdata',async(req, res)=>{
     res.json({catogires:catogires,usercart:usercart});
 })
 
+
 app.listen(port,()=>{
     console.log(`the server is listening on ${port}`)}
 );

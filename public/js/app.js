@@ -724,6 +724,8 @@
                     cat_list.appendChild(newel)
                 }
             }
+
+
         })
 
     });
@@ -756,3 +758,40 @@
         RESHOP.shopPerspectiveChange();
         RESHOP.shopSideFilter();
 })(jQuery);
+
+let add=document.getElementsByClassName("btn--e-brand")
+console.log(add);
+
+for(let i=0;i<add.length;i++){
+
+    add[i].addEventListener('click',()=>{
+        let proid=event.target.id;
+
+        axios.post('http://localhost:3200/addtocart',{id:proid}).
+        then((response)=>{
+
+        if(response.data!==""){
+            window.location.replace(response.data)
+        }})
+        .catch((err)=>console.log(err))
+    })
+}
+
+let fav=document.getElementsByClassName("fa-heart")
+
+for(let i=0;i<fav.length;i++){
+
+    fav[i].addEventListener('click',()=>{
+        let proid=event.target.id;
+
+        
+        axios.post('http://localhost:3200/addtofav',{id:proid}).
+        then((response)=>{
+
+        if(response.data!==""){
+            window.location.replace(response.data)
+        }})
+        .catch((err)=>console.log(err))
+    })
+}
+
