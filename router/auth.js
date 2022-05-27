@@ -66,7 +66,12 @@ router.get('/manageprofile', async (req,res)=>{
         console.log(x);
     res.render('dashboard',{profile:req.user,len:x})
 })
+router.get('/products',(req,res)=>{
 
+   
+    res.send('hellow')
+    
+})
 
 
 module.exports=router;
