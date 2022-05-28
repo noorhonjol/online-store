@@ -1408,21 +1408,21 @@
                             <div class="pd u-s-m-b-30">
                                 <div class="slider-fouc pd-wrap">
                                     <div id="pd-o-initiate">
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-1.jpg">
+                                        <div class="pd-o-img-wrap" data-src="<%=proitem.image%>">
 
-                                            <img class="u-img-fluid" src="images/product/product-d-1.jpg" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-2.jpg">
+                                            <img class="u-img-fluid" src= "<%=proitem.image%>" data-zoom-image="<%=proitem.image%>" alt=""></div>
+                                        <div class="pd-o-img-wrap" data-src="<%=proitem.image%>">
 
-                                            <img class="u-img-fluid" src="images/product/product-d-2.jpg" data-zoom-image="images/product/product-d-2.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-3.jpg">
+                                            <img class="u-img-fluid" src= "<%=proitem.image%>" data-zoom-image="<%=proitem.image%>" alt=""></div>
+                                        <div class="pd-o-img-wrap" data-src="<%=proitem.image%>">
 
-                                            <img class="u-img-fluid" src="images/product/product-d-3.jpg" data-zoom-image="images/product/product-d-3.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-4.jpg">
+                                            <img class="u-img-fluid" src= "<%=proitem.image%>" data-zoom-image="<%=proitem.image%>" alt=""></div>
+                                        <div class="pd-o-img-wrap" data-src="<%=proitem.image%>">
 
-                                            <img class="u-img-fluid" src="images/product/product-d-4.jpg" data-zoom-image="images/product/product-d-4.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-5.jpg">
+                                            <img class="u-img-fluid" src= "<%=proitem.image%>" data-zoom-image="<%=proitem.image%>" alt=""></div>
+                                        <div class="pd-o-img-wrap" data-src="<%=proitem.image%>">
 
-                                            <img class="u-img-fluid" src="images/product/product-d-5.jpg" data-zoom-image="images/product/product-d-5.jpg" alt=""></div>
+                                            <img class="u-img-fluid" src="<%=proitem.image%>" data-zoom-image="<%=proitem.image%>" alt=""></div>
                                     </div>
 
                                     <span class="pd-text">Click for larger zoom</span>
@@ -1432,19 +1432,19 @@
                                         <div id="pd-o-thumbnail">
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="<%=proitem.image%>" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="<%=proitem.image%>" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="<%=proitem.image%>" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="<%=proitem.image%>" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="<%=proitem.image%>" alt=""></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1457,31 +1457,31 @@
                             <div class="pd-detail">
                                 <div>
 
-                                    <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span></div>
+                                    <span class="pd-detail__name"><%=proitem.pName%></span></div>
                                 <div>
                                     <div class="pd-detail__inline">
 
-                                        <span class="pd-detail__price">$6.99</span>
+                                        <span class="pd-detail__price">$<%=proitem.pPrice%></span>
 
-                                        <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del></div>
+                                        
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
 
                                         <span class="pd-detail__review u-s-m-l-4">
 
-                                            <a data-click-scroll="#view-review">23 Reviews</a></span></div>
+                                            <a data-click-scroll="#view-review"></a> <%=proitem.quntity%></span></div>
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
 
-                                        <span class="pd-detail__stock">200 in stock</span>
+                                        <span class="pd-detail__stock"> <%=proitem.quntity%> in stock</span>
 
-                                        <span class="pd-detail__left">Only 2 left</span></div>
+                                    
                                 </div>
                                 <div class="u-s-m-b-15">
 
-                                    <span class="pd-detail__preview-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>
+                                    <span class="pd-detail__preview-desc"><%=proitem.description%></span></div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
 
@@ -1656,7 +1656,7 @@
                                     <div class="tab-pane" id="pd-desc">
                                         <div class="pd-tab__desc">
                                             <div class="u-s-m-b-15">
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                                <p> <%=proitem.description%></p>
                                             </div>
                                             <div class="u-s-m-b-30"><iframe src="https://www.youtube.com/embed/qKqSBm07KZk" allowfullscreen></iframe></div>
                                             <div class="u-s-m-b-30">
@@ -1671,53 +1671,6 @@
 
                                                         <span>Returns accepted if product not as described.</span></li>
                                                 </ul>
-                                            </div>
-                                            <div class="u-s-m-b-15">
-                                                <h4>PRODUCT INFORMATION</h4>
-                                            </div>
-                                            <div class="u-s-m-b-15">
-                                                <div class="pd-table gl-scroll">
-                                                    <table>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Main Material</td>
-                                                                <td>Cotton</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Color</td>
-                                                                <td>Green, Blue, Red</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sleeves</td>
-                                                                <td>Long Sleeve</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Top Fit</td>
-                                                                <td>Regular</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Print</td>
-                                                                <td>Not Printed</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Neck</td>
-                                                                <td>Round Neck</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Pieces Count</td>
-                                                                <td>1 Piece</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Occasion</td>
-                                                                <td>Casual</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Shipping Weight (kg)</td>
-                                                                <td>0.5</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
