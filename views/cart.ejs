@@ -97,7 +97,7 @@
                                                         <div class="table-p__box">
                                                             <div class="table-p__img-wrap">
 
-                                                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></div>
+                                                                <img class="u-img-fluid" src="<%= products[i].image%>" alt=""></div>
                                                             <div class="table-p__info">
 
                                                                 <span class="table-p__name">
@@ -106,15 +106,8 @@
 
                                                                 <span class="table-p__category">
 
-                                                                    <a href="shop-side-version-2.html">Electronics</a></span>
-                                                                <ul class="table-p__variant-list">
-                                                                    <li>
-
-                                                                        <span>Size: 22</span></li>
-                                                                    <li>
-
-                                                                        <span>Color: Red</span></li>
-                                                                </ul>
+                                                                    <a href="shop-side-version-2.html"><%=products[i].c_name%></a></span>
+                                                                
                                                             </div>
                                                         </div>
                                                     </td>
