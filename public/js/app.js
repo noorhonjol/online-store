@@ -659,9 +659,7 @@ RESHOP.shopPerspectiveChange = function() {
         axios.get("http://localhost:3200/getdata")
         .then((response) => 
         {
-            // console.log(response);
-            // window.localStorage.setItem("catgoires",JSON.stringify(response.data))
-            // console.log();
+
             
             const catagories=response.data.catogires;
             
@@ -673,11 +671,11 @@ RESHOP.shopPerspectiveChange = function() {
                 const cart_list=document.querySelector(".mini-product-container")
                 const total=document.querySelectorAll(".total-item-round")
                 for(let i=0; i<total.length;i++)total[i].innerHTML=usercart.length
-                console.log(usercart)
+
                 for(let i=0;i<usercart.length;i++){
                     sum+=usercart[i].pPrice;
                     const newel=document.createElement("div")
-                    
+
                     newel.className="card-mini-product"
                     newel.innerHTML=`<div class="mini-product">
                         <div class="mini-product__image-wrapper">
@@ -695,7 +693,7 @@ RESHOP.shopPerspectiveChange = function() {
 
                                 <a href="">${usercart[i].pName}</a></span>
 
-                            <span class="mini-product__quantity">1 x</span>
+                            <span class="mini-product__quantity">${usercart[i].count} x</span>
 
                             <span class="mini-product__price">${usercart[i].pPrice}</span></div>
                     </div>
@@ -704,7 +702,7 @@ RESHOP.shopPerspectiveChange = function() {
                     
                     cart_list.appendChild(newel);
                 }
-                console.log(totalcart)
+
                 totalcart.innerHTML="$"+sum
             }
             
@@ -761,40 +759,50 @@ RESHOP.shopPerspectiveChange = function() {
         RESHOP.shopSideFilter();
 })(jQuery);
 
-const AddToCart=()=>{
-        let add=document.getElementsByClassName("btn--e-brand")
-        console.log(add);
-        for(let i=0;i<add.length;i++){
-
-        add[i].addEventListener('click',()=>{
-            let proid=event.target.id;
-
-            axios.post('http://localhost:3200/addtocart',{id:proid})
-            .then((response)=>{
-            if(response.data!==""){
-                window.location.replace(response.data)
-            }})
-            .catch((err)=>console.log(err))
-        })
+const AddToCart=(proid)=>{
+    const PID=parseInt(proid);
+    axios.post('http://localhost:3200/addtocart',{id:PID})
+    .then((response)=>{
+        if(response.data!==""){
+            window.location.replace(response.data)
         }
-    
-    }
+    })
+    .catch((err)=>console.log(err))
+}
 
-    const addtpfav=()=>{
-        let fav=document.getElementsByClassName("fa-heart")
-        for(let i=0;i<fav.length;i++){
+const addtpfav=(proid)=>{
 
-        fav[i].addEventListener('click',()=>{
-            let proid=event.target.id;
+    const PID=parseInt(proid);
 
-            
-            axios.post('http://localhost:3200/addtofav',{id:proid}).
-            then((response)=>{
-
-            if(response.data!==""){
-                window.location.replace(response.data)
-            }})
-            .catch((err)=>console.log(err))
-        })
+    axios.post('http://localhost:3200/addtofav',{id:PID}).
+    then((response)=>{
+        if(response.data!==""){
+            window.location.replace(response.data)
         }
-    }
+    })
+    .catch((err)=>console.log(err))
+}
+
+const deletefromcart=(proid)=>{
+    const PID=parseInt(proid);
+
+    const deleteTD=this.event.target.parentElement.parentElement.parentElement;
+
+    axios.delete(`/deletecart/${PID}`).then((response)=>{
+        console.log(response)
+        deleteTD.remove()
+    })
+}
+const deletefromfav=(proid)=>{
+    const PID=parseInt(proid);
+
+    const deletDIV=this.event.target.parentElement.parentElement.parentElement;
+
+    axios.delete(`/deletefev/${PID}`).then((response)=>{
+        deletDIV.remove();
+    })
+}
+
+const a=()=>{
+    console.log("aa")
+}

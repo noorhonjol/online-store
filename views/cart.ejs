@@ -102,18 +102,18 @@
 
                                                                 <span class="table-p__name">
 
-                                                                    <a href="product-detail.html"><%= products[i].pName%></a></span>
+                                                                    <a href="/products/category/detals?id=<%= products[i].proID %>"><%= products[i].pName%></a></span>
 
                                                                 <span class="table-p__category">
 
-                                                                    <a href="shop-side-version-2.html"><%=products[i].c_name%></a></span>
+                                                                    <a href="/products/category/shop?c_name=<%= products[i].c_name %>"><%=products[i].c_name%></a></span>
                                                                 
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
 
-                                                        <span class="table-p__price">$125.00</span></td>
+                                                        <span class="table-p__price">$<%= products[i].pPrice%></span></td>
                                                     <td>
                                                         <div class="table-p__input-counter-wrap">
 
@@ -122,7 +122,7 @@
 
                                                                 <span class="input-counter__minus fas fa-minus"></span>
 
-                                                                <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
+                                                                <input class="input-counter__text input-counter--text-primary-style" type="text" value="<%= products[i].count %>" data-min="1" data-max="1000">
 
                                                                 <span class="input-counter__plus fas fa-plus"></span></div>
                                                             <!--====== End - Input Counter ======-->
@@ -131,7 +131,7 @@
                                                     <td>
                                                         <div class="table-p__del-wrap">
 
-                                                            <a class="far fa-trash-alt table-p__delete-link" href="#"></a></div>
+                                                            <button class="far fa-trash-alt table-p__delete-link" onclick="deletefromcart(`<%= products[i].proID %>`)"></button></div>
                                                     </td>
                                                 </tr>
                                             <% }%>
@@ -192,21 +192,18 @@
                                                 <div class="u-s-m-b-30">
                                                     <table class="f-cart__table">
                                                         <tbody>
-                                                            <tr>
-                                                                <td>SHIPPING</td>
-                                                                <td>$4.00</td>
-                                                            </tr>
+
                                                             <tr>
                                                                 <td>TAX</td>
-                                                                <td>$0.00</td>
+                                                                <td>$<%=tax%></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>SUBTOTAL</td>
-                                                                <td>$379.00</td>
+                                                                <td>$<%=subtotal %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>GRAND TOTAL</td>
-                                                                <td>$379.00</td>
+                                                                <td>$<%=subtotal+tax%></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

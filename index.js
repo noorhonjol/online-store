@@ -43,11 +43,6 @@ require('./models/passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use((req, res, next) => {
-//     console.log(req.session);
-//     console.log(req.user);
-//     next();
-// });
 
 
 
@@ -74,7 +69,7 @@ app.get('/getdata',async(req, res)=>{
         usercart=0;
     }
     else{
-        usercart=await db.query(`SELECT pName,pPrice,image,product.proID,c_name FROM product ,cart WHERE cart.proID=product.proID AND id =${req.user.id};`);
+        usercart=await db.query(`SELECT pName,pPrice,image,product.proID,c_name,count FROM product ,cart WHERE cart.proID=product.proID AND id =${req.user.id};`);
     }
     res.json({catogires:catogires,usercart:usercart});
 })

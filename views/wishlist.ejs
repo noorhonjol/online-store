@@ -106,17 +106,17 @@
 
                                                     <a href="shop-side-version-2.html">Electronics</a></span>
 
-                                                <span class="w-r__price">$125.00
+                                                <span class="w-r__price">$<%= products[i].pPrice%></span>
 
-                                                    <span class="w-r__discount">$160.00</span></span></div>
+                                            </div>
                                         </div>
                                         <div class="w-r__wrap-2">
 
-                                            <button class="w-r__link btn--e-brand-b-2" onclick="AddToCart()" data-modal="modal" data-modal-id="#add-to-cart" >ADD TO CART</button>
+                                            <button class="w-r__link btn--e-brand-b-2" onclick="AddToCart(`<%= products[i].proID %>`)" data-modal="modal" data-modal-id="#add-to-cart" >ADD TO CART</button>
 
                                             <a class="w-r__link btn--e-transparent-platinum-b-2" href="/products/category/detals?id=<%= products[i].proID %>">VIEW</a>
 
-                                            <a class="w-r__link btn--e-transparent-platinum-b-2" href="#">REMOVE</a></div>
+                                            <button class="w-r__link btn--e-transparent-platinum-b-2" onclick="deletefromfav(`<%= products[i].proID%>`)">REMOVE</button></div>
                                     </div>
                                 </div>
                                 <!--====== End - Wishlist Product ======-->
@@ -223,4 +223,5 @@
         </div>
     </noscript>
 </body>
-</html>
+
+</html >
