@@ -7,6 +7,9 @@ const router = express.Router();
 
 router.get('/shop',productscontroler.giveAllProducts);
 
-router.get('/',productscontroler.givcatproducts)
+
+router.get('/detals',productscontroler.givedetails)
+
+router.post('/detals',productscontroler.putreview)
 
 module.exports =router;

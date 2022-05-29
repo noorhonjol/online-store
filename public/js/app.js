@@ -603,21 +603,21 @@
 
 
     // Shop Perspective Change
-    RESHOP.shopPerspectiveChange = function() {
-          if ($shopGridBtn.length && $shopListBtn.length)   {
-              $shopGridBtn.on('click',function () {
-                  $(this).addClass('is-active');
-                  $shopListBtn.removeClass('is-active');
-                  $shopPerspectiveRow.removeClass('is-list-active');
-                  $shopPerspectiveRow.addClass('is-grid-active');
-              });
-              $shopListBtn.on('click',function () {
-                  $(this).addClass('is-active');
-                  $shopGridBtn.removeClass('is-active');
-                  $shopPerspectiveRow.removeClass('is-grid-active');
-                  $shopPerspectiveRow.addClass('is-list-active');
-              });
-          }
+RESHOP.shopPerspectiveChange = function() {
+    if ($shopGridBtn.length && $shopListBtn.length)   {
+        $shopGridBtn.on('click',function () {
+            $(this).addClass('is-active');
+            $shopListBtn.removeClass('is-active');
+            $shopPerspectiveRow.removeClass('is-list-active');
+            $shopPerspectiveRow.addClass('is-grid-active');
+        });
+        $shopListBtn.on('click',function () {
+            $(this).addClass('is-active');
+            $shopGridBtn.removeClass('is-active');
+            $shopPerspectiveRow.removeClass('is-grid-active');
+            $shopPerspectiveRow.addClass('is-list-active');
+        });
+    }
     };
     // Shop Side Filter Settings
     RESHOP.shopSideFilter = function() {
@@ -656,7 +656,9 @@
             $primarySlider.trigger('refresh.owl.carousel');
         }
 
-        axios.get("http://localhost:3200/getdata").then((response) => {
+        axios.get("http://localhost:3200/getdata")
+        .then((response) => 
+        {
             // console.log(response);
             // window.localStorage.setItem("catgoires",JSON.stringify(response.data))
             // console.log();
@@ -671,7 +673,7 @@
                 const cart_list=document.querySelector(".mini-product-container")
                 const total=document.querySelectorAll(".total-item-round")
                 for(let i=0; i<total.length;i++)total[i].innerHTML=usercart.length
-
+                console.log(usercart)
                 for(let i=0;i<usercart.length;i++){
                     sum+=usercart[i].pPrice;
                     const newel=document.createElement("div")
@@ -680,22 +682,22 @@
                     newel.innerHTML=`<div class="mini-product">
                         <div class="mini-product__image-wrapper">
 
-                            <a class="mini-product__link" href="product-detail.html">
+                            <a class="mini-product__link" href="/products/category/detals?id=${usercart[i].proID}">
 
-                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></a></div>
-                        <div class="mini-product__info-wrapper">
+                                <img class="u-img-fluid" src="${usercart[i].image}" alt=""></a></div>
+                                <div class="mini-product__info-wrapper">
 
                             <span class="mini-product__category">
 
-                                <a href="shop-side-version-2.html">Electronics</a></span>
+                                <a href="/products/category/shop?c_name=${usercart[i].c_name}">${usercart[i].c_name}</a></span>
 
                             <span class="mini-product__name">
 
-                                <a href="product-detail.html">Yellow Wireless Headphone</a></span>
+                                <a href="">${usercart[i].pName}</a></span>
 
                             <span class="mini-product__quantity">1 x</span>
 
-                            <span class="mini-product__price">$8</span></div>
+                            <span class="mini-product__price">${usercart[i].pPrice}</span></div>
                     </div>
 
                     <a class="mini-product__delete-link far fa-trash-alt"></a>`
@@ -759,39 +761,36 @@
         RESHOP.shopSideFilter();
 })(jQuery);
 
-let add=document.getElementsByClassName("btn--e-brand")
-console.log(add);
+const AddToCart=()=>{
+        let add=document.getElementsByClassName("btn--e-brand")
+        console.log(add);
+        for(let i=0;i<add.length;i++){
 
-for(let i=0;i<add.length;i++){
+        add[i].addEventListener('click',()=>{
+            let proid=event.target.id;
 
-    add[i].addEventListener('click',()=>{
-        let proid=event.target.id;
+            axios.post('http://localhost:3200/addtocart',{id:proid})
+            .then((response)=>{
+            if(response.data!==""){
+                window.location.replace(response.data)
+            }})
+            .catch((err)=>console.log(err))
+        })
+        }
+        let fav=document.getElementsByClassName("fa-heart")
+        for(let i=0;i<fav.length;i++){
 
-        axios.post('http://localhost:3200/addtocart',{id:proid}).
-        then((response)=>{
+        fav[i].addEventListener('click',()=>{
+            let proid=event.target.id;
 
-        if(response.data!==""){
-            window.location.replace(response.data)
-        }})
-        .catch((err)=>console.log(err))
-    })
-}
+            
+            axios.post('http://localhost:3200/addtofav',{id:proid}).
+            then((response)=>{
 
-let fav=document.getElementsByClassName("fa-heart")
-
-for(let i=0;i<fav.length;i++){
-
-    fav[i].addEventListener('click',()=>{
-        let proid=event.target.id;
-
-        
-        axios.post('http://localhost:3200/addtofav',{id:proid}).
-        then((response)=>{
-
-        if(response.data!==""){
-            window.location.replace(response.data)
-        }})
-        .catch((err)=>console.log(err))
-    })
-}
-
+            if(response.data!==""){
+                window.location.replace(response.data)
+            }})
+            .catch((err)=>console.log(err))
+        })
+        }
+    }

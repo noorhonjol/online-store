@@ -66,15 +66,7 @@ router.get('/manageprofile', async (req,res)=>{
         console.log(x);
     res.render('dashboard',{profile:req.user,len:x})
 })
-router.get('/productsdetals',async(req,res)=>{
 
-    const [rows]= await db.query(`SELECT * FROM product where proID = ${req.query.id}`)
-    const [revs]= await db.query(`SELECT * FROM rev where proID = ${req.query.id}`)
-console.log(rows)
-
-    res.render('products',{proitem:rows[0]},{reviw:revs})
-    
-})
 
 
 module.exports=router;
