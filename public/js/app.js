@@ -777,6 +777,10 @@ const AddToCart=()=>{
             .catch((err)=>console.log(err))
         })
         }
+    
+    }
+
+    const addtpfav=()=>{
         let fav=document.getElementsByClassName("fa-heart")
         for(let i=0;i<fav.length;i++){
 

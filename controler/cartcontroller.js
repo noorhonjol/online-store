@@ -21,6 +21,7 @@ const addtocart=async(req,res)=>{
     }
 
 }
+
 const addTofav=async(req,res)=>{
     const {id}=req.body;
 
