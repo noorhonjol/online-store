@@ -802,7 +802,3 @@ const deletefromfav=(proid)=>{
         deletDIV.remove();
     })
 }
-
-const a=()=>{
-    console.log("aa")
-}

@@ -64,7 +64,7 @@
                                                         
                                                         <li>
                                                             <a href="/products/category/shop?c_name=<%= cat[i].catagioresName %>"><%= cat[i].catagioresName %></a>
-                                                            <span class="category-list__text u-s-m-l-6">(0)</span>
+                                                            
                                                         </li>
                                                     
                                                     <% } %>
@@ -90,7 +90,7 @@
                                                             <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                                                         </div>
 
-                                                        <span class="shop-w__total-text">(2)</span>
+
                                                     </li>
                                                     <li>
                                                         <div class="rating__check">
@@ -101,7 +101,7 @@
                                                                 <span>& Up</span></div>
                                                         </div>
 
-                                                        <span class="shop-w__total-text">(8)</span>
+
                                                     </li>
                                                     <li>
                                                         <div class="rating__check">
@@ -112,7 +112,7 @@
                                                                 <span>& Up</span></div>
                                                         </div>
 
-                                                        <span class="shop-w__total-text">(10)</span>
+
                                                     </li>
                                                     <li>
                                                         <div class="rating__check">
@@ -123,7 +123,6 @@
                                                                 <span>& Up</span></div>
                                                         </div>
 
-                                                        <span class="shop-w__total-text">(12)</span>
                                                     </li>
                                                     <li>
                                                         <div class="rating__check">
@@ -134,7 +133,6 @@
                                                                 <span>& Up</span></div>
                                                         </div>
 
-                                                        <span class="shop-w__total-text">(1)</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -206,12 +204,8 @@
                                                     <% for (var i = 0; i < products.length; i++) { %>
                                                         <li>
                                                             <div class="list__content">
-    
                                                                 <input type="checkbox">
-    
                                                                 <span><%=products[i].company%></span></div>
-    
-                                                            <span class="shop-w__total-text">(2)</span>
                                                         </li>
                                                     <%}%>
 
@@ -265,9 +259,9 @@
                                                         <div class="product-m__name">
     
                                                             <a href="/products/category/detals?id=<%= products[i].proID %>"><%= products[i].pName %></a></div>
-                                                        <div class="product-m__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-    
-                                                            <span class="product-m__review">(23)</span></div>
+                                                        <div class="product-m__rating gl-rating-style">
+
+                                                        </div>
                                                         <div class="product-m__price">$<%= products[i].pPrice %></div>
                                                         <div class="product-m__hover">
                                                             <div class="product-m__preview-description">

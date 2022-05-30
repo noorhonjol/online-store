@@ -1,19 +1,28 @@
 const express = require('express');
-<<<<<<< Updated upstream
-
-=======
-const { DEC8_BIN } = require('mysql/lib/protocol/constants/charsets');
-const cartcontroller= require('../controler/cartcontroller')
->>>>>>> Stashed changes
 const router = express.Router();
-const db=require('../models/db');
+const profileController =require('../controler/profilecontroller')
 
 
-router.get('/edit-firstname',(req,res)=>{
+router.get('/edit-firstname',profileController.geteditfirst)
 
-    res.render('edit-firstname')
+router.get('/edit-lastname',profileController.geteditlast)
 
-})
+router.get('/edit-passward',profileController.geteditpass)
 
+router.get('/edit-email',profileController.geteditemail)
 
-module.exports =router;
+router.get('/edit-username',profileController.getedituname)
+
+router.get('/admin-page',profileController.getadmin)
+
+router.post('/edit-firstname',profileController.editFname)
+
+router.post('/edit-lastname',profileController.editLname)
+
+router.post('/edit-passward',profileController.editpassword)
+
+router.post('/edit-email',profileController.editemail)
+
+router.post('/edit-username',profileController.editUname)
+
+module.exports =router

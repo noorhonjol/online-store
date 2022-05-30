@@ -4,6 +4,7 @@ const config = require('config');
 const db=require('./models/db');
 
 
+
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 const passport= require('passport');
@@ -31,7 +32,7 @@ const home = require('./router/home');
 const cart = require('./router/cart');
 const auth = require('./router/auth');
 const products = require('./router/products');
-
+const profile= require('./router/profile');
 
 const path = require('path');
 const ejs = require('ejs');
@@ -52,7 +53,8 @@ app.set('view engine', 'ejs');
 
 
 
-//app.use('/',fav);
+
+app.use('/',profile);
 app.use('/',auth);
 app.use('/',cart);
 app.use('/',home);
@@ -62,17 +64,8 @@ app.use('/products/category',products);
 
 const port = process.env.port ||3200;
 
-app.get('/getdata',async(req, res)=>{
-    const [catogires]=await db.query(`SELECT * FROM catogire`);
-    let usercart;
-    if(req.user===undefined){
-        usercart=0;
-    }
-    else{
-        usercart=await db.query(`SELECT pName,pPrice,image,product.proID,c_name,count FROM product ,cart WHERE cart.proID=product.proID AND id =${req.user.id};`);
-    }
-    res.json({catogires:catogires,usercart:usercart});
-})
+
+
 
 
 app.listen(port,()=>{

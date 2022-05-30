@@ -1,4 +1,4 @@
-const mysql= require('mysql2');
+
 const db=require('../models/db');
 const{hash,compare}=require('bcrypt');
 const sendEmail = require('../ults/sendemail');
@@ -20,28 +20,26 @@ const getEdpage=(req,res)=>{
     res.render('dash-edit-profile',{profile:req.user})
 }
 const signup =async(req, res)=>{
-    const {password,email,phonenumber,birthdate,firstname,lastname} = req.body;
+    const {password,email,phonenumber,birthdate,firstname,lastname,gender} = req.body;
     const username=`${firstname}_${lastname}`
-    console.log(username)
-    // try {
-    //     const [rows]=await db.pool.query(`SELECT * from custamer where email='${email}' or userName='${username}';`);
-    //     if(!rows.length){
-    //         try{
-    //             const hash_password=await hash (password,10);
-    //             console.log(hash_password);
-    //             db.pool.query(`INSERT INTO custamer (firstName , lastName , email , username , password , phoneNumber , birthday) VALUES
-    //             ('${firstname}','${lastname}','${email}', '${username}', '${hash_password}','${phonenumber}','${birthdate}');`);
-    //         }catch(err){
-    //             console.log(err);
-    //         }
-    //     }
-    //     else{
-    //         res.send('the account is already registered');
-    //     }
-    // }
-    // catch (err) {
-    //     console.log("err");
-    // }
+    
+    try {
+        if(gender&&password&&email&&phonenumber&&birthdate&&firstname&&lastname){
+            const [rows]=await db.query(`SELECT * from custamer where email='${email}' or userName='${username}';`);
+            if(!rows.length){
+                const hash_password=await hash (password,10);
+                db.query(`INSERT INTO custamer (firstName , lastName , email , username , password , phoneNumber , birthday, gender) VALUES
+                ('${firstname}','${lastname}','${email}', '${username}', '${hash_password}','${phonenumber}','${birthdate}','${gender}');`);
+                res.redirect('/login')
+            }
+            else{
+                res.send('the account is already registered');
+            }
+        }
+    }
+    catch (err) {
+        console.log("err");
+    }
 }
 
 const forget =  async(req, res)=>{
