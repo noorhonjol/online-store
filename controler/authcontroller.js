@@ -114,6 +114,6 @@ const distroy =(req, res, next)=> {
 }
 
 module.exports={
-    distroy,signup,forget,confirm,getfpage,getlogin,getRpage,getPpage,getEdpage
-    //reset,is_founded_toconfirm,isconfirmed,
+    distroy,signup,forget,getfpage,getlogin,getRpage,getPpage,getEdpage
+    //reset,is_founded_toconfirm,isconfirmed,confirm
 }
