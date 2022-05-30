@@ -15,41 +15,33 @@ const getRpage=(req, res)=>{
 const getPpage=(req, res, next) => {
     res.render('dash-my-profile',{profile:req.user});
 }
-const getMPpage=async (req,res)=>{
 
-    if(req.user!=undefined){
-        const [rows]= await db.query(`SELECT * FROM fav where id = ${req.user.id}`)
-        let x=rows.length;
-        console.log(x);
-        return res.render('dashboard',{profile:req.user,len:x})
-    }else{
-        return res.redirect('/login')
-    }
-}
 const getEdpage=(req,res)=>{
     res.render('dash-edit-profile',{profile:req.user})
 }
 const signup =async(req, res)=>{
-    const {password,email,username,phonenumber,birthdate,firstname,lastname} = req.body;
-    try {
-        const [rows]=await db.pool.query(`SELECT * from custamer where email='${email}' or userName='${username}';`);
-        if(!rows.length){
-            try{
-                const hash_password=await hash (password,10);
-                console.log(hash_password);
-                db.pool.query(`INSERT INTO custamer (firstName , lastName , email , username , password , phoneNumber , birthday) VALUES
-                ('${firstname}','${lastname}','${email}', '${username}', '${hash_password}','${phonenumber}','${birthdate}');`);
-            }catch(err){
-                console.log(err);
-            }
-        }
-        else{
-            res.send('the account is already registered');
-        }
-    }
-    catch (err) {
-        console.log("err");
-    }
+    const {password,email,phonenumber,birthdate,firstname,lastname} = req.body;
+    const username=`${firstname}_${lastname}`
+    console.log(username)
+    // try {
+    //     const [rows]=await db.pool.query(`SELECT * from custamer where email='${email}' or userName='${username}';`);
+    //     if(!rows.length){
+    //         try{
+    //             const hash_password=await hash (password,10);
+    //             console.log(hash_password);
+    //             db.pool.query(`INSERT INTO custamer (firstName , lastName , email , username , password , phoneNumber , birthday) VALUES
+    //             ('${firstname}','${lastname}','${email}', '${username}', '${hash_password}','${phonenumber}','${birthdate}');`);
+    //         }catch(err){
+    //             console.log(err);
+    //         }
+    //     }
+    //     else{
+    //         res.send('the account is already registered');
+    //     }
+    // }
+    // catch (err) {
+    //     console.log("err");
+    // }
 }
 
 const forget =  async(req, res)=>{
@@ -122,5 +114,5 @@ const distroy =(req, res, next)=> {
 }
 
 module.exports={
-    distroy,signup,forget,confirm,reset,is_founded_toconfirm,isconfirmed,getfpage,getlogin,getRpage,getPpage,getMPpage,getEdpage
+    distroy,signup,forget,confirm,reset,is_founded_toconfirm,isconfirmed,getfpage,getlogin,getRpage,getPpage,getEdpage
 }

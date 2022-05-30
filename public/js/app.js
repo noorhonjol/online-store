@@ -717,7 +717,7 @@ RESHOP.shopPerspectiveChange = function() {
                     const newel=document.createElement("li");
                     newel.className="js-active";
                     newel.innerHTML=
-                    `<a href="shop-side-version-2.html"><i class="fas fa-tv u-s-m-r-6"></i>
+                    `<a href="/products/category/shop?c_name=${catagories[i].catagioresName}"><i class="fas fa-tv u-s-m-r-6"></i>
                         <span>${catagories[i].catagioresName} </span></a>
                         <span class="js-toggle-mark"></span>
                     `

@@ -12,7 +12,7 @@ router.get('/forget',isLogin,authcontroller.getfpage);
 router.get('/signup',isLogin,authcontroller.getRpage);
 router.get('/profile', isAuth,authcontroller.getPpage);
 router.get('/logout',authcontroller.distroy);
-router.get('/manageprofile', authcontroller.getMPpage);
+
 router.get('/dash-edit',authcontroller.getEdpage);
 
 router.get('/rest',isLogin,(req,res)=>{
