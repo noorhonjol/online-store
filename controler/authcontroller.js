@@ -20,6 +20,7 @@ const getEdpage=(req,res)=>{
     res.render('dash-edit-profile',{profile:req.user})
 }
 const signup =async(req, res)=>{
+
     const {password,email,phonenumber,birthdate,firstname,lastname,gender} = req.body;
     const username=`${firstname}_${lastname}`
     
@@ -66,44 +67,45 @@ const forget =  async(req, res)=>{
             })
         }
 }
-const confirm=async(req, res) => {
-    const{recoveryCode}=req.body;
-    if(recoveryCode){
-        if(await compare(recoveryCode,req.query.hash)){
-            req.session.isReset=true;
-            req.session.c_id=req.query.u_id;
-        }
-        else{
-            console.log("aa");
-        }
-    }
-    else{
-        res.send("aav");
-    }
-}
-const reset=async(req, res)=>{
+// const confirm=async(req, res) => {
+    
+//     const{recoveryCode}=req.body;
+//     if(recoveryCode){
+//         if(await compare(recoveryCode,req.query.hash)){
+//             req.session.isReset=true;
+//             req.session.c_id=req.query.u_id;
+//         }
+//         else{
+//             console.log("aa");
+//         }
+//     }
+//     else{
+//         res.send("aav");
+//     }
+// }
+// const reset=async(req, res)=>{
 
-    const {newpasswword}=req.body;
-    await db.pool.query(`UPDATE users SET password= ${newpasswword} WHERE id= "${req.query.u_id}`);
-}
+//     const {newpasswword}=req.body;
+//     await db.pool.query(`UPDATE users SET password= ${newpasswword} WHERE id= "${req.query.u_id}`);
+// }
 
-const is_founded_toconfirm =(req, res, next)=> {
-    if(req.session.found){
-        next();
-    }
-    else{
-        res.redirect('/login');
-    }
-}
+// const is_founded_toconfirm =(req, res, next)=> {
+//     if(req.session.found){
+//         next();
+//     }
+//     else{
+//         res.redirect('/login');
+//     }
+// }
 
-const isconfirmed=(req, res,next)=> {
-    if(req.session.found){
-        next();
-    }
-    else{
-        res.redirect('/login');
-    }
-}
+// const isconfirmed=(req, res,next)=> {
+//     if(req.session.found){
+//         next();
+//     }
+//     else{
+//         res.redirect('/login');
+//     }
+// }
 const distroy =(req, res, next)=> {
     req.logout(()=>{
         res.redirect(`login`)
@@ -112,5 +114,6 @@ const distroy =(req, res, next)=> {
 }
 
 module.exports={
-    distroy,signup,forget,confirm,reset,is_founded_toconfirm,isconfirmed,getfpage,getlogin,getRpage,getPpage,getEdpage
+    distroy,signup,forget,confirm,getfpage,getlogin,getRpage,getPpage,getEdpage
+    //reset,is_founded_toconfirm,isconfirmed,
 }
