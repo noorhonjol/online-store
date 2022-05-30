@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <meta charset="UTF-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -50,10 +51,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="/homepage">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-edit-profile.html">My Account</a></li>
+                                        <a href="/profile">My Account</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -77,14 +78,14 @@
                                     <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                         <div class="dash__pad-1">
 
-                                            <span class="dash__text u-s-m-b-16">Hello, <%=profile.userName%></span>
+                                            <span class="dash__text u-s-m-b-16">Hello, John Doe</span>
                                             <ul class="dash__f-list">
                                                 <li>
 
-                                                    <a class="dash-active" href="dashboard.html">Manage My Account</a></li>
+                                                    <a href="dashboard.html">Manage My Account</a></li>
                                                 <li>
 
-                                                    <a href="dash-my-profile.html">My Profile</a></li>
+                                                    <a class="dash-active" href="dash-my-profile.html">My Profile</a></li>
                                                 <li>
 
                                                     <a href="dash-address-book.html">Address Book</a></li>
@@ -139,37 +140,19 @@
                                     <!--====== End - Dashboard Features ======-->
                                 </div>
                                 <div class="col-lg-9 col-md-12">
-                                    <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white">
+                                    <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
                                         <div class="dash__pad-2">
-                                            <h1 class="dash__h1 u-s-m-b-14">Edit Profile</h1>
+                                            
+                                                <form method="post">
+                                                    <div class="u-s-m-b-30 formdiv-one">
+                                                        
+                                                        <label class="gl-label" for="reg-fname">YOUR NEW email </label>
+                                                        <input class="input-text input-text--primary-style" type="text"name="email" id="reg-fname" placeholder= "Email">
+                                                        <button class="dash__custom-link btn--e-transparent-brand-b-2" type="submit">EDIT</BUTton>
+                                                    </div>
+                                            
 
-                                            <span class="dash__text u-s-m-b-30">Looks like you haven't update your profile</span>
-
-                                            <div class="dash__link dash__link--secondary u-s-m-b-30 ">
-
-                                                <a data-modal="modal" data-modal-id="#dash-newsletter">Subscribe Newsletter</a></div>
-
-                                                <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white input-forms">
-
-                                                <a href="/edit-firstname"> <h1 class="dash__h1 u-s-m-b-14">edit first name</h1></a>
-
-                                                </div>
-                                                <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white input-forms">
-                                                    <a href="edit-lastname"><h1 class="dash__h1 u-s-m-b-14">edit last name</h1></a>
-                                                </div>
-                                                <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white input-forms">
-                                                    <a href="edit-passward"><h1 class="dash__h1 u-s-m-b-14">edit your passward</h1></a>
-
-                                                </div>
-                                                <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white input-forms">
-                                                    <a href="edit-email"><h1 class="dash__h1 u-s-m-b-14">edit your email</h1></a>
-
-                                                </div>
-                                                <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white input-forms">
-                                                    <a href="edit-username"><h1 class="dash__h1 u-s-m-b-14">edit your username</h1></a>
-
-
-                                                </div>
+                                                </form>
                                         </div>
                                     </div>
                                 </div>
@@ -181,6 +164,8 @@
             </div>
             <!--====== End - Section 2 ======-->
         </div>
+        <!--====== End - App Content ======-->
+
 
         <!--====== Main Footer ======-->
         <%- include('partials/foteer.ejs') %> 
@@ -199,7 +184,7 @@
 
                                 <span class="gl-modal-text">I have read and understood</span>
 
-                                <a class="d_modal__link" href="dash-edit-profile.html">Ludus Privacy Policy</a>
+                                <a class="d_modal__link" href="dash-my-profile.html">Ludus Privacy Policy</a>
                             </div>
                             <div class="gl-modal-btn-group">
 
