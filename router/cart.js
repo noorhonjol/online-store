@@ -27,6 +27,7 @@ router.get('/edit-lastname',(req,res)=>{res.render('edit-lastname')})
 router.get('/edit-passward',(req,res)=>{res.render('edit-passward')})
 router.get('/edit-email',(req,res)=>{res.render('edit-email')})
 router.get('/edit-username',(req,res)=>{res.render('edit-username')})
+router.get('/admin-page',(req,res)=>{res.render('admin-page')})
 
 router.post('/edit-firstname',async(req,res)=>{
 const name=req.body.firstname
