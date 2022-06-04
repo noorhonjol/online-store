@@ -78,6 +78,21 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
     display: block;
 }
 .insert-data {
-    display: flex;
+    display: none;
     flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+}
+.insert-data input{
+    border-radius: 25px;
+}
+th, td {
+    border:1px solid black;
+}
+table{
+    width: 100%;
+}
+.users-table{
+    display:none;
 }

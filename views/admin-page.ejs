@@ -2,6 +2,8 @@
 <html class="no-js" lang="en">
 <head>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <meta charset="UTF-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,6 +23,7 @@
 
     <!--====== App ======-->
     <link rel="stylesheet" href="css/app.css">
+    <script src="js/adminpage.js" defer></script>
 </head>
 <body class="config">
     <div class="preloader is-active">
@@ -52,6 +55,7 @@
                                     <li class="has-separator">
 
                                         <a href="/homepage">Home</a></li>
+
                                     <li class="is-marked">
 
                                         <a href="/profile">My Account</a></li>
@@ -79,83 +83,140 @@
                                         <div class="dash__pad-1">
 
                                             <span class="dash__text u-s-m-b-16">Hello, John Doe</span>
+
                                             <ul class="dash__f-list">
+
+                                                <li>
+                                                    <a id="show-add-form">Add New Product</a>
+                                                </li>
+
                                                 <li>
 
-                                                    <a href="dashboard.html">Manage My Account</a></li>
-                                                <li>
+                                                    <a  id="show-table-users">User table</a>
+                                                </li>
 
-                                                    <a class="dash-active" href="dash-my-profile.html">My Profile</a></li>
-                                                <li>
 
-                                                    <a href="dash-address-book.html">Address Book</a></li>
-                                                <li>
-
-                                                    <a href="dash-track-order.html">Track Order</a></li>
-                                                <li>
-
-                                                    <a href="dash-my-order.html">My Orders</a></li>
-                                                <li>
-
-                                                    <a href="dash-payment-option.html">My Payment Options</a></li>
-                                                <li>
-
-                                                    <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
                                             </ul>
                                         </div>
                                     </div>
+
+
                                     <div class="dash__box dash__box--bg-white dash__box--shadow dash__box--w">
                                         <div class="dash__pad-1">
+
                                             <ul class="dash__w-list">
+
                                                 <li>
                                                     <div class="dash__w-wrap">
 
-                                                        <span class="dash__w-icon dash__w-icon-style-1"><i class="fas fa-cart-arrow-down"></i></span>
+                                                        <span class="dash__w-icon dash__w-icon-style-1"><i class="fas fa-thin fa-child"></i></i></span>
 
-                                                        <span class="dash__w-text">4</span>
+                                                        <span class="dash__w-text"><%= users.length %></span>
 
-                                                        <span class="dash__w-name">Orders Placed</span></div>
+                                                        <span class="dash__w-name">Number of Users</span></div>
                                                 </li>
+                                                
                                                 <li>
                                                     <div class="dash__w-wrap">
 
-                                                        <span class="dash__w-icon dash__w-icon-style-2"><i class="fas fa-times"></i></span>
+                                                        <span class="dash__w-icon dash__w-icon-style-3"><i class="fas fa-duotone fa-store"></i></span>
 
-                                                        <span class="dash__w-text">0</span>
+                                                        <span class="dash__w-text"><%= prod.length %></span>
 
-                                                        <span class="dash__w-name">Cancel Orders</span></div>
+                                                        <span class="dash__w-name">number of products</span></div>
                                                 </li>
-                                                <li>
-                                                    <div class="dash__w-wrap">
 
-                                                        <span class="dash__w-icon dash__w-icon-style-3"><i class="far fa-heart"></i></span>
 
-                                                        <span class="dash__w-text">0</span>
-
-                                                        <span class="dash__w-name">Wishlist</span></div>
-                                                </li>
                                             </ul>
+
                                         </div>
+
                                     </div>
+
                                     <!--====== End - Dashboard Features ======-->
                                 </div>
+
                                 <div class="col-lg-9 col-md-12">
+                                    
                                     <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30 insert-data">
-                                        <form method="post">
-                                        <label class="gl-label" for="proID">Product ID</label>
-                                        <input class="input-text input-text--primary-style" type="number" placeholder="product id" name="proID">
-                                        <label class="gl-label" for="proName">Product Name</label>
-                                        <input class="input-text input-text--primary-style" type="text" placeholder="Product Name" name="proName">
-                                        <label class="gl-label" for="pPrice">Product Price</label>
-                                        <input class="input-text input-text--primary-style" type="text" placeholder="Product Price" name="pPrice">
-                                        <label class="gl-label" for="pCompany">Product Company</label>
-                                        <input class="input-text input-text--primary-style" type="text" placeholder="Product Company" name="pCompany">
-                                        <label class="gl-label" for="produCategory">Product category</label>
-                                        <input class="input-text input-text--primary-style" type="text" placeholder="Product category" name="produCategory">
-                                        <label class="gl-label" for="image">Product image</label>
-                                        <input class="input-text input-text--primary-style" type="file" placeholder="image" name="image">
-                                    </form>
+                                        <form method="post" class="add-pro">
+                                        
+                                            <label class="gl-label" for="proID">Product ID</label>
+                                            <input class="input-text input-text--primary-style" type="number" placeholder="product id" name="proID" id="proID">
+
+                                            <label class="gl-label" for="proName">Product Name</label>
+                                            <input class="input-text input-text--primary-style" type="text" placeholder="Product Name" name="proName" id="proName">
+
+                                            <label class="gl-label" for="pPrice">Product Price</label>
+                                            <input class="input-text input-text--primary-style" type="text" placeholder="Product Price" name="pPrice" id="pPrice">
+                                            
+                                            <label class="gl-label" for="pCompany">Product Company</label>
+                                            <input class="input-text input-text--primary-style" type="text" placeholder="Product Company" name="pCompany" id="pCompany">
+
+                                            <label class="gl-label" for="produCategory">Product category</label>
+
+                                            <select class="input-text input-text--primary-style" id="produCategory" name="productcat">
+                                                <% for (var i = 0; i < cat.length ; i++) { %>
+                                                    <option value="<%= cat[i].catagioresName %>" >
+                                                        <%= cat[i].catagioresName %>
+                                                    </option>
+                                                <%}%>
+
+                                            </select>
+
+                                            <label class="gl-label" for="image">Product image</label>
+
+                                            <input class="input-text input-text--primary-style" type="file" placeholder="image" name="image" id="image">
+
+                                        </form>
+
                                     </div>
+
+                                    
+                                            <div class="table-responsive users-table">
+                                                <table class="table table-striped table-sm">
+                                                    <thead>
+
+                                                        <tr>
+                                                            <th scope="col">id</th>
+                                                            <th scope="col">User Name</th>
+                                                            <th scope="col">email</th>
+                                                            <th scope="col">firstname</th>
+                                                            <th scope="col">lastname</th>
+                                                            <th scope="col">Phone Number</th>
+                                                            <th scope="col">birthdate</th>
+                                                            <th scope="col">gender</th>
+                                                            <th></th>
+                                                        </tr>
+
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <% for (var i = 0; i < users.length; i++) { %>
+
+                                                            <tr>
+                                                                <td><%= users[i].id %></td>
+                                                                <td><%= users[i].userName %></td>
+                                                                <td><%= users[i].email %></td>
+                                                                <td><%= users[i].firstName %></td>
+                                                                <td><%= users[i].lastName %></td>
+                                                                <td><%= users[i].phoneNumber %></td>
+                                                                <td><%= users[i].birthday %></td>
+                                                                <td><%= users[i].gender %></td>
+                                                                <td><button class="btn btn-secondary delbtn" value="<%= users[i].id %>">delete</button></td>
+                                                            </tr>
+    
+                                                        <%}%>
+
+                                                    </tbody>
+                                                </table>
+
+                                            
+                                    </div>
+    
+
+
+
                                 </div>
                             </div>
                         </div>

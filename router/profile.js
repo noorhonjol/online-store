@@ -25,4 +25,6 @@ router.post('/edit-email',profileController.editemail)
 
 router.post('/edit-username',profileController.editUname)
 
+router.delete('/admin-page/:id',profileController.deluser)
+
 module.exports =router

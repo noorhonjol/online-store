@@ -10,7 +10,14 @@ const getedituname = (req,res)=>{res.render('edit-username')}
 
 const geteditpass=(req,res)=>{res.render('edit-passward')}
 
-const getadmin = (req,res)=>{res.render('admin-page')}
+const getadmin = async(req,res)=>{
+    const [users]=await db.query('select * from custamer')
+    const [prod]=await db.query('select * from product')
+    const [cat]=await db.query('select * from catogire')
+    console.log(users,prod,cat)
+    res.render('admin-page',{users:users,cat:cat,prod:prod})
+
+}
 
 const editFname=async(req,res)=>{
     try {
@@ -82,5 +89,12 @@ const editUname=async(req,res)=>{
     }
     
 }
+const deluser=async(req,res)=>{
+    const {id}=req.params;
+    
+    await db.query(`DELETE FROM custamer WHERE id=${id} ;`)
 
-module.exports ={geteditfirst, geteditlast ,geteditemail,getedituname,geteditpass,getadmin,editLname,editFname,editpassword,editemail,editUname}
+    res.status(200).send();
+}
+
+module.exports ={geteditfirst, geteditlast ,geteditemail,getedituname,geteditpass,getadmin,editLname,editFname,editpassword,editemail,editUname,deluser}
